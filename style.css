@@ -1,0 +1,362 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+  position: relative;
+  color: #333;
+}
+
+/* Main Game Board Container */
+.game-board {
+  position: relative;       /* So the overlay can be absolutely positioned within */
+  margin: 0 auto;           /* Center if desired */
+  max-width: 1200px;        /* Or any width you prefer */
+  min-height: 600px;        /* Example height; adjust as needed */
+  background-color: transparent; /* Transparent background */
+  border: 8px solid #65e3fa;     /* Solid border as requested */
+  box-sizing: border-box;   /* Ensures padding/border is included in total width/height */
+  padding: 20px;            /* Optional padding to space your content */
+}
+
+/* Overlay Board */
+.overlay-board {
+  pointer-events: none;    /* Allows clicks to pass through to underlying content */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 8px dotted #f4ffff; /* Spaced/dashed line pattern */
+  box-sizing: border-box;  /* So the dashed border fits exactly within this container */
+  background-color: transparent;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Wrapper that holds both the probability container and the button container */
+.probability-and-buttons {
+  display: flex;           /* Place them side by side */
+  justify-content: space-between;
+  align-items: flex-start;    /* Match heights if one is taller */
+}
+
+/* White rectangle that contains the 2x2 grid of probability boxes */
+.pro-container {
+  background-color: #fff;  /* White background */
+  border-radius: 8px;      /* Optional rounding */
+  padding: 5px;            /* Spacing inside */
+  box-sizing: border-box;
+  display: flex;           /* Allows internal flex or grid child to stretch */
+  flex-direction: column;
+}
+
+/* 2x2 grid for the probability boxes */
+.pro-grid {
+  flex: 1;                 /* Occupies remaining vertical space in .pro-container */
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 2 columns */
+  grid-template-rows: auto auto;   /* 2 rows */
+  /* You can add gap, e.g., gap: 10px; if desired */
+}
+
+/* Base styles for each probability box */
+.prob-box {
+  width: 230px;
+  min-height: 146px;
+
+  /* 4px white border (adjust as desired) */
+  border: 4px solid #ffffff;
+  border-radius: 8px;
+
+  /* Font from Oswald (if loaded) */
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  color: #333;
+
+  /* Spacing inside the box */
+  padding: 2px;
+
+  /* Center text */
+  text-align: center;
+}
+
+/* Title area within each box */
+.prob-title {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Result area: embedded rounded rectangle */
+.prob-result {
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 36px; /* Larger font for the percentage */
+  width: 80%;
+}
+
+/* Thematically colored boxes and their embedded rectangles */
+.pro-safe-draw {
+  background-color: #92c47d;
+}
+.pro-safe-draw .prob-result {
+  background-color: #d8ead2;
+}
+
+.pro-bust {
+  background-color: #e99998;
+}
+.pro-bust .prob-result {
+  background-color: #f4cccc;
+}
+
+.pro-draw-ten {
+  background-color: #ffe59a;
+}
+.pro-draw-ten .prob-result {
+  background-color: #fff2cd;
+}
+
+.pro-win {
+  background-color: #9fc5e9;
+}
+.pro-win .prob-result {
+  background-color: #cfe2f3;
+}
+
+
+
+/* Card containers */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Larger card size (if you want bigger holders) */
+.card {
+  width: 80px;     /* Increase width */
+  height: 120px;   /* Increase height */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+}
+/* EMPTY state: grey, smaller text, thinner border */
+.card.empty {
+  background-color: lightgrey;
+  font-size: 24px;
+  border: 2px solid #5c565a;
+  color: #333; /* or #333, adjust as desired */
+}
+.card.filled {
+  background-color: white;
+  font-size: 48px;
+  border: 4px solid #5c565a;
+  color: #333;
+}
+/* New Button Container */
+.button-container {
+  background-color: #d1e0e3;
+  border: 8px solid #ffffff;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+/* Rows of card buttons */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Bottom row for NEW GAME and NEXT buttons */
+.control-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* NEW GAME & NEXT: same style as card buttons but different color (#6da9dd) */
+.new-game,
+.next-phase {
+  background-color: #6da9dd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Optional hover style */
+.new-game:hover,
+.next-phase:hover {
+  background-color: #5c93c4;
+}
+
+/* Card Button Styles */
+.card-button {
+  position: relative;
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff3333;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #9fc5e9;
+}
+
+/* Mini card styles inside each button */
+.mini-card-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.mini-card {
+  width: 15px;
+  height: 20px;
+  background-color: #ccc;
+  border: 1px solid #999;
+  border-radius: 2px;
+  margin: 0 1px;
+}
+
+
+#phase-message {
+  position: absolute;         /* Position inside .bottom-container */
+  top: 50%;                   /* Center vertically */
+  left: 50%;                  /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset to truly center */
+  font-size: 80px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+  z-index: 999;
+  color: #333;                /* Adjust text color as desired */
+}
+
+/* Bottom container with 2px #5c565a border */
+.bottom-container {
+  position: relative;
+  background-color: #fff0d0;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 100px;
+  min-height: 200px; /* Adjust as needed */
+}
+
+/* Dealer Holder */
+.dealer-holder {
+  position: relative; /* So the label and score can be absolutely positioned inside */
+  width: 420px;       /* Adjust the width to your preference */
+  height: 180px;      /* Adjust the height to your preference */
+  border: 2px solid #5c565a;
+  border-radius: 8px;
+  background-color: #ffb3b3;
+  /* Some padding inside if you like */
+  padding: 10px;
+}
+
+/* Sideways "Dealer" label on the left edge */
+.dealer-label {
+  position: relative;
+  top: 50%;
+  left: -5px; /* Shift left from the container */
+  transform: translateY(-50%) rotate(-90deg); /* Rotates text 90deg counterclockwise */
+  transform-origin: left top;
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+  
+}
+
+/* Protruding Dealer score tab at upper right */
+.dealer-score {
+  position: absolute;
+  top: 0;
+  right: -80px; /* Moves the tab outside the holder’s right edge */
+  width: 80px;  /* Tab width */
+  height: 80px; /* Tab height */
+  background-color: #ffb3b3;
+  border: 2px solid #5c565a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  color: #333;
+}
+
+/* Player Holder */
+.player-holder {
+  position: relative;
+  width: 420px;   /* Adjust as needed */
+  height: 180px;  /* Adjust as needed */
+  border: 2px solid #5c565a;
+  border-radius: 8px;
+  background-color: #b3ffb3;
+  padding: 10px;
+}
+
+/* Sideways "You" label on the left edge */
+.player-label {
+  position: relative;
+  top: 200%;
+  transform: translateY(150%) rotate(90deg);
+  transform-origin: right top;
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Protruding Player score tab at bottom left */
+.player-score {
+  position: absolute;
+  bottom: 0px; /* Moves the tab below the holder’s bottom edge */
+  left: -80px;
+  width: 80px;
+  height: 80px;
+  background-color: #b3ffb3;
+  border: 2px solid #5c565a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  color: #333;
+}
+
+.author-credit {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;    /* Adjust size as desired */
+  color: #333;        /* Text color */
+}

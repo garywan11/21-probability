@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>21 Probabilities</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <meta charset="UTF-8" />
+  <title>21 Probability Trainer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Main Game Board -->
+  <div class="game-board">
+    <!-- Overlay Board -->
+    <div class="overlay-board"></div>
+    <!-- Probability + Buttons Wrapper -->
+    <div class="probability-and-buttons">
+      <!-- White Rectangle for Probability Boxes -->
+      <div class="pro-container">
+        <div class="pro-grid">
+          <!-- Safe Draw Box -->
+          <div class="prob-box pro-safe-draw">
+            <div class="prob-title">Probability of Safe Draw:</div>
+            <div class="prob-result" id="safe-draw">--%</div>
+          </div>
+
+          <!-- Bust Box -->
+          <div class="prob-box pro-bust">
+            <div class="prob-title">Probability of BUST:</div>
+            <div class="prob-result" id="bust">--%</div>
+          </div>
+
+          <!-- Drawing a 10 Box -->
+          <div class="prob-box pro-draw-ten">
+            <div class="prob-title">Probability of Drawing a 10:</div>
+            <div class="prob-result" id="draw-10">--%</div>
+          </div>
+
+          <!-- Drawing to 21 Box -->
+          <div class="prob-box pro-win">
+            <div class="prob-title">Probability of Drawing to 21:</div>
+            <div class="prob-result" id="hit-21">--%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW Button Container for card buttons -->
+      <div class="button-container">
+        <!-- First row: A, 2, 3, 4, 5 -->
+        <div class="button-row">
+          <button class="card-button" onclick="handleCardPress('A', 'A')">A
+            <div class="mini-card-container" id="mini-card-A">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(2, '2')">2
+            <div class="mini-card-container" id="mini-card-2">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(3, '3')">3
+            <div class="mini-card-container" id="mini-card-3">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(4, '4')">4
+            <div class="mini-card-container" id="mini-card-4">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(5, '5')">5
+            <div class="mini-card-container" id="mini-card-5">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+        </div>
+        <!-- Second row: 6, 7, 8, 9, 10 -->
+        <div class="button-row">
+          <button class="card-button" onclick="handleCardPress(6, '6')">6
+            <div class="mini-card-container" id="mini-card-6">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(7, '7')">7
+            <div class="mini-card-container" id="mini-card-7">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(8, '8')">8
+            <div class="mini-card-container" id="mini-card-8">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(9, '9')">9
+            <div class="mini-card-container" id="mini-card-9">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress(10, '10')">10
+            <div class="mini-card-container" id="mini-card-10">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Third row: J, Q, K -->
+        <div class="button-row">
+          <button class="card-button" onclick="handleCardPress('J', 'J')">J
+            <div class="mini-card-container" id="mini-card-J">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress('Q', 'Q')">Q
+            <div class="mini-card-container" id="mini-card-Q">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+          <button class="card-button" onclick="handleCardPress('K', 'K')">K
+            <div class="mini-card-container" id="mini-card-K">
+              <span class="mini-card"></span><span class="mini-card"></span>
+              <span class="mini-card"></span><span class="mini-card"></span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Bottom row: NEW GAME (left) and NEXT (right) -->
+        <div class="control-buttons">
+          <button class="new-game" onclick="resetGame()">NEW GAME</button>
+          <button class="next-phase" onclick="nextPhase()">NEXT</button>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom Container: wraps the Dealer/Player area -->
+    <div class="bottom-container">
+  <!-- Dealer Holder -->
+  <div class="dealer-holder">
+    <!-- Protruding score tab -->
+    <div class="dealer-score" id="dealer-total">0</div>
+    <!-- Sideways text "Dealer" -->
+    <div class="dealer-label">Dealer</div>
+    
+    
+    <!-- Dealer's card container (larger cards) -->
+    <div class="card-container" id="dealer-cards">
+      <div class="card empty" id="dealer-card-1">?</div>
+      <div class="card empty" id="dealer-card-2">?</div>
+    </div>
+  </div>
+
+  <!-- Player Holder -->
+  <div class="player-holder">
+    <!-- Sideways text "You" -->
+    <div class="player-label">You</div>
+    <!-- Protruding score tab -->
+    <div class="player-score" id="player-total">0</div>
+    
+    <!-- Player's card container (larger cards) -->
+    <div class="card-container" id="player-cards">
+      <div class="card empty" id="player-card-1">?</div>
+      <div class="card empty" id="player-card-2">?</div>
+    </div>
+        </div>
+      <!-- Phase message element, script, etc. -->
+      <div id="phase-message"></div>
+        <div class="author-credit">Created by Gary Wan</div>
+    </div>
+    <div class="author-credit">Version 1.0</div>
+  </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
